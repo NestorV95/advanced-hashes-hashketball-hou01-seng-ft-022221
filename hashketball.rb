@@ -215,6 +215,9 @@ def big_shoe_rebounds
       data.each do |player|
         shoes.push(player[:shoe])
       end
-      big_shoe = 
-    
+      big_shoe = shoes.max
+      puts big_shoe
+    end
+  end
+  end     
 end
