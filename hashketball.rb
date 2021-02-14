@@ -126,4 +126,73 @@ def game_hash
   }
 end
 
-# Write code here
+def num_points_scored(player_name)
+ game_hash
+  game_hash.each do |location, team_data|
+  team_data[:players].each do |player|
+      
+    if player[:player_name] == player_name
+     return player[:points]
+     player
+    end
+  end
+ end
+end
+
+def shoe_size(player_name)
+ game_hash
+  game_hash.each do |location, team_data|
+  team_data[:players].each do |player|
+      
+    if player[:player_name] == player_name
+     return player[:shoe]
+     player
+    end
+  end
+ end
+end
+
+def team_colors(team_name)
+  game_hash
+  game_hash.each do |location, team_data|
+    team = team_data[:team_name]
+    colors = team_data[:colors]
+  if team == team_name
+     return colors
+  end
+ end
+end
+
+def team_names
+  teams=[]
+  game_hash
+  game_hash.each do |location, team_data|
+    team_data.each do |attribute, data|
+     if attribute == :team_name
+     teams.push(data)
+    end
+   end
+  end
+ return teams
+end
+
+require"pry"
+
+def player_numbers(team_name)
+  numbers=[]
+   game_hash
+  game_hash.each do |location, team_data|
+   if team_data[:team_name] == team_name
+      team_data.each do |attribute, data|
+        if attribute == :players
+           data.each do |player|
+           numbers.push(player[:number])
+         end
+       end
+     end
+    end
+  end
+  return numbers
+ end
+
+
