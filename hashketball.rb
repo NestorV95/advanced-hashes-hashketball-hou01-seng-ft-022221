@@ -217,8 +217,8 @@ def big_shoe_rebounds
         big_shoe = shoes.max
       if player[:shoe] == big_shoe
         big_shoe_player = player
+        print big_shoe_player
      end
-     print big_shoe_player
     end
    end
   end
