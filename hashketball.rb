@@ -217,7 +217,7 @@ def big_shoe_rebounds
       end
       big_shoe = shoes.max
       if player[:shoe] == big_shoe
-        big_shoe_player = :player_name
+        big_shoe_player = player
      end
      puts big_shoe_player
     end
