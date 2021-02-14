@@ -176,8 +176,6 @@ def team_names
  return teams
 end
 
-require"pry"
-
 def player_numbers(team_name)
   numbers=[]
    game_hash
