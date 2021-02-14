@@ -216,7 +216,7 @@ def big_shoe_rebounds
         shoes.push(player[:shoe])
         big_shoe = shoes.max
       if player[:shoe] == big_shoe
-        big_shoe_player = player
+        big_shoe_player = player[:player_name]
         print big_shoe_player
      end
     end
