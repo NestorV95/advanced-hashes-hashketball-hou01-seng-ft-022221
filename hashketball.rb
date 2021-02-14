@@ -219,7 +219,7 @@ def big_shoe_rebounds
       if player[:shoe] == big_shoe
         big_shoe_player = player
      end
-     puts big_shoe_player
+     print big_shoe_player
     end
    end
   end
