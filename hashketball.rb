@@ -1,3 +1,5 @@
+require 'pry'
+
 # Write your code below game_hash
 def game_hash
   {
@@ -126,101 +128,43 @@ def game_hash
   }
 end
 
-def num_points_scored(player_name)
- game_hash
-  game_hash.each do |location, team_data|
-  team_data[:players].each do |player|
-      
-    if player[:player_name] == player_name
-     return player[:points]
-     player
-    end
-  end
- end
+def players
+  game_hash[:home][:players].concat(game_hash[:away][:players])
 end
 
-def shoe_size(player_name)
- game_hash
-  game_hash.each do |location, team_data|
-  team_data[:players].each do |player|
-      
-    if player[:player_name] == player_name
-     return player[:shoe]
-     player
-    end
-  end
- end
+def player_stats(name)
+  players.find{|p| p[:player_name] == name }
 end
 
-def team_colors(team_name)
-  game_hash
-  game_hash.each do |location, team_data|
-    team = team_data[:team_name]
-    colors = team_data[:colors]
-  if team == team_name
-     return colors
-  end
- end
+def num_points_scored(name)
+  player_stats(name)[:points]
 end
 
-def team_names
-  teams=[]
-  game_hash
-  game_hash.each do |location, team_data|
-    team_data.each do |attribute, data|
-     if attribute == :team_name
-     teams.push(data)
-    end
-   end
-  end
- return teams
-end
-
-def player_numbers(team_name)
-  numbers=[]
-   game_hash
-  game_hash.each do |location, team_data|
-   if team_data[:team_name] == team_name
-      team_data.each do |attribute, data|
-        if attribute == :players
-           data.each do |player|
-           numbers.push(player[:number])
-         end
-       end
-     end
-    end
-  end
-  return numbers
-end
-
-def player_stats(player_name)
-  game_hash
-  game_hash.each do |location, team_data|
-  team_data[:players].each do |player|
-      
-    if player[:player_name] == player_name
-     return player
-     player
-    end
-  end
- end
+def shoe_size(name)
+  player_stats(name)[:shoe]
 end
 
 def big_shoe_rebounds
-  big_shoe=0 
-  rebounds=0
-  game_hash
-  game_hash.each do |location, team_data|
-  team_data.each do |attribute, data|
-    if attribute == :players
-      data.each do |player|
-      if player[:shoe] > big_shoe
-        big_shoe = player[:shoe]
-       rebounds = player[:rebounds]
-     end
-    end
-   end
-  end
- end
- return rebounds
+  bs= players.max_by{|p| p[:shoe]} ; bs[:rebounds]
 end
+
+def teams
+  [game_hash[:home],game_hash[:away] ]
+end
+
+def team(name)
+  teams.find{|t| t[:team_name] == name }
+end
+
+def team_colors(name)
+    team(name)[:colors]
+end
+
+def team_names
+  teams.map{|t| t[:team_name]}
+end
+
+def player_numbers(name)
+  team(name)[:players].map{|p| p[:number] }
+end
+
